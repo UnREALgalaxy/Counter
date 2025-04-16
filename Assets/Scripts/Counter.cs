@@ -14,17 +14,17 @@ public class Counter : MonoBehaviour
 
     private void OnEnable()
     {
-        _inputHandler.Activated += ActivateCounter;
-        _inputHandler.Deactivated += DeactivateCounter;
+        _inputHandler.Activated += Activate;
+        _inputHandler.Deactivated += Deactivate;
     }
 
     private void OnDisable()
     {
-        _inputHandler.Activated -= ActivateCounter;
-        _inputHandler.Deactivated -= DeactivateCounter;
+        _inputHandler.Activated -= Activate;
+        _inputHandler.Deactivated -= Deactivate;
     }
 
-    private void DeactivateCounter()
+    private void Deactivate()
     {
         if (_coroutine != null)
         {
@@ -33,12 +33,12 @@ public class Counter : MonoBehaviour
         }
     }
 
-    private void ActivateCounter()
+    private void Activate()
     {
-        _coroutine = StartCoroutine(StartCounter());
+        _coroutine = StartCoroutine(StartCount());
     }
 
-    private IEnumerator StartCounter()
+    private IEnumerator StartCount()
     {
         var wait = new WaitForSecondsRealtime(_delay);
 
