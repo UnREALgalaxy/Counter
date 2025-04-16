@@ -11,10 +11,10 @@ public class InputHandler : MonoBehaviour
 
     private void Update()
     {
-        Activate();
+        ToggleCounter();
     }
 
-    private void Activate()
+    private void ToggleCounter()
     {
         if (Input.GetMouseButtonDown((int)MouseButton.Left))
         {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,9 +6,11 @@ public class Counter : MonoBehaviour
 {
     [SerializeField] private InputHandler _inputHandler;
 
+    public event Action ShowCounter;
     private float _delay = 0.5f;
-    private int _counter = 0;
     private Coroutine _coroutine = null;
+
+    public int CounterNumber { get; private set; } = 0;
 
     private void OnEnable()
     {
@@ -41,8 +44,9 @@ public class Counter : MonoBehaviour
 
         while (true)
         {
-            Debug.Log(_counter);
-            _counter++;
+            CounterNumber++;
+
+            ShowCounter.Invoke();
 
             yield return wait;
         }
