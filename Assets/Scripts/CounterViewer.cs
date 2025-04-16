@@ -7,16 +7,16 @@ public class CounterViewer : MonoBehaviour
 
     private void OnEnable()
     {
-        _counter.ShowCounter += ShowCounter;
+        _counter.Changed += ShowNumber;
     }
 
     private void OnDisable()
     {
-        _counter.ShowCounter -= ShowCounter;
+        _counter.Changed -= ShowNumber;
     }
 
-    private void ShowCounter()
+    private void ShowNumber(int number)
     {
-        Debug.Log(_counter.CounterNumber);
+        Debug.Log(number);
     }
 }

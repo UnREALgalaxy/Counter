@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Counter : MonoBehaviour
 {
-    [SerializeField] private InputHandler _inputHandler;
+    [SerializeField] private CounterToggler _inputHandler;
 
-    public event Action ShowCounter;
     private float _delay = 0.5f;
     private Coroutine _coroutine = null;
+    private int _counterNumber = 0;
 
-    public int CounterNumber { get; private set; } = 0;
+    public event Action<int> Changed;
 
     private void OnEnable()
     {
@@ -42,11 +42,11 @@ public class Counter : MonoBehaviour
     {
         var wait = new WaitForSecondsRealtime(_delay);
 
-        while (true)
+        while (enabled)
         {
-            CounterNumber++;
+            _counterNumber++;
 
-            ShowCounter.Invoke();
+            Changed.Invoke(_counterNumber);
 
             yield return wait;
         }

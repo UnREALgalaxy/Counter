@@ -1,8 +1,7 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class InputHandler : MonoBehaviour
+public class CounterToggler : MonoBehaviour
 {
     public event Action Activated;
     public event Action Deactivated;
@@ -16,7 +15,7 @@ public class InputHandler : MonoBehaviour
 
     private void ToggleCounter()
     {
-        if (Input.GetMouseButtonDown((int)MouseButton.Left))
+        if (Input.GetMouseButtonDown(0))
         {
             if (IsActivated)
             {
